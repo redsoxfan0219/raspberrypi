@@ -20,13 +20,14 @@ def index():
 @app.route("/<deviceName>/")
 def action(deviceName):
     if deviceName == 'lights':
-        relay = lights
+        relay = lights_pin
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(relay, GPIO.OUT)
         GPIO.output(relay, GPIO.LOW)
         time.sleep(5)
         GPIO.output(relay, GPIO.HIGH)
-
+    
+    return render_template('lights.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
